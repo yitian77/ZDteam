@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -13,6 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ZDteam extends JavaPlugin implements TabCompleter {
 
@@ -104,11 +106,13 @@ public class ZDteam extends JavaPlugin implements TabCompleter {
             return;
         }
 
-        Team newTeam = new Team(teamName, player.getUniqueId(), new ArrayList<>(), maxTeamSize);
+        int maxSize = getConfig().getInt("team-size." + teamName, getConfig().getInt("default-team-size"));
+        Team newTeam = new Team(teamName, player.getUniqueId(), maxSize);
         teams.put(teamName, newTeam);
         playerTeams.put(player.getUniqueId(), teamName);
         player.sendMessage(ChatColor.GREEN + "队伍 " + teamName + " 已成功创建！");
 
+        // 创建队伍时生成配置文件
         File teamFile = new File(getDataFolder(), "teams/" + teamName + ".yml");
         if (!teamFile.exists()) {
             try {
@@ -120,6 +124,7 @@ public class ZDteam extends JavaPlugin implements TabCompleter {
             }
         }
     }
+
 
     private void handleInviteCommand(Player player, String[] args) {
         if (!playerTeams.containsKey(player.getUniqueId())) {
@@ -424,6 +429,30 @@ public class ZDteam extends JavaPlugin implements TabCompleter {
         sender.sendMessage(ChatColor.GREEN + "/zd hp - 显示帮助信息");
         sender.sendMessage(ChatColor.GREEN + "/zd ck - 查看队伍信息");
         sender.sendMessage(ChatColor.GREEN + "/zd exit - 退出队伍");
+    }
+    public void loadConfig() {
+        FileConfiguration config = getConfig();
+        int defaultTeamSize = config.getInt("default-team-size");
+
+        // 从配置中获取队伍人数上限配置，并转换为 Map<String, Integer>
+        ConfigurationSection teamSizeSection = config.getConfigurationSection("team-size");
+        Map<String, Integer> teamSizeConfig = new HashMap<>();
+
+        if (teamSizeSection != null) {
+            teamSizeConfig = teamSizeSection.getKeys(false).stream()
+                    .collect(Collectors.toMap(
+                            key -> key,
+                            key -> teamSizeSection.getInt(key)
+                    ));
+        }
+
+        // 示例：创建队伍实例
+        String teamName = "TeamName"; // 示例
+        UUID leaderUUID = UUID.fromString("player-uuid"); // 示例
+        int maxSize = teamSizeConfig.getOrDefault(teamName, defaultTeamSize);
+
+        Team team = new Team(teamName, leaderUUID, maxSize);
+        // 进一步的初始化代码
     }
 
     @Override

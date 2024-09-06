@@ -11,13 +11,20 @@ public class Team {
     private List<UUID> viceLeaders;
     private int maxSize;
 
-    // 构造函数
-    public Team(String name, UUID leader, List<UUID> members, int maxSize) {
+    // 构造函数: 只使用名称和队长的 UUID
+    public Team(String name, UUID leader, int maxSize) {
         this.name = name;
         this.leader = leader;
-        this.members = members;
-        this.maxSize = maxSize;
+        this.members = new ArrayList<>();
         this.viceLeaders = new ArrayList<>();
+        this.maxSize = maxSize;
+        this.members.add(leader); // 将队长添加为成员
+    }
+
+    // 构造函数: 使用名称、队长 UUID、副队长列表和最大人数
+    public Team(String name, UUID leader, List<UUID> viceLeaders, int maxSize) {
+        this(name, leader, maxSize); // 调用上面的构造函数
+        this.viceLeaders = viceLeaders != null ? viceLeaders : new ArrayList<>();
     }
 
     public String getName() {
@@ -44,35 +51,37 @@ public class Team {
         return members.size() >= maxSize;
     }
 
-    public boolean isLeader(UUID playerId) {
-        return leader.equals(playerId);
-    }
-
-    public boolean isViceLeader(UUID playerId) {
-        return viceLeaders.contains(playerId);
-    }
-
-    public void addMember(UUID playerId) {
-        if (!members.contains(playerId)) {
-            members.add(playerId);
+    public void addMember(UUID member) {
+        if (!isFull()) {
+            members.add(member);
         }
     }
 
-    public void removeMember(UUID playerId) {
-        members.remove(playerId);
+    public void removeMember(UUID member) {
+        members.remove(member);
     }
 
-    public void promoteToViceLeader(UUID playerId) {
-        if (!viceLeaders.contains(playerId)) {
-            viceLeaders.add(playerId);
+    public boolean isLeader(UUID player) {
+        return leader.equals(player);
+    }
+
+    public boolean isViceLeader(UUID player) {
+        return viceLeaders.contains(player);
+    }
+
+    public void promoteToViceLeader(UUID player) {
+        if (members.contains(player) && !viceLeaders.contains(player)) {
+            viceLeaders.add(player);
         }
     }
 
-    public void demoteFromViceLeader(UUID playerId) {
-        viceLeaders.remove(playerId);
+    public void demoteFromViceLeader(UUID player) {
+        viceLeaders.remove(player);
     }
 
-    public void transferLeadership(UUID newLeaderId) {
-        leader = newLeaderId;
+    public void transferLeadership(UUID newLeader) {
+        if (members.contains(newLeader)) {
+            leader = newLeader;
+        }
     }
 }
