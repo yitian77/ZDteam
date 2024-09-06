@@ -1,0 +1,19 @@
+# 插件的配置文件
+
+# 是否启用队伍系统
+enabled: true
+
+# 队伍最大人数
+maxTeamSize: 8
+
+# 队伍的配置
+teams:
+  # 示例队伍配置
+  TeamName:
+    leader: "player-uuid"
+    members:
+      - "player-uuid"
+      - "player-uuid"
+    viceLeaders:
+      - "player-uuid"
+    maxSize: 8

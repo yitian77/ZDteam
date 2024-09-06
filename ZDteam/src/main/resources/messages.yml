@@ -1,0 +1,69 @@
+# messages_zh.yml
+
+# 指令相关
+commands:
+  create:
+    success: "队伍 %s 已成功创建！"
+    already_in_team: "你已经在队伍中，无法创建新的队伍！"
+    name_exists: "队伍名已存在！"
+    missing_name: "请提供队伍名称！"
+  invite:
+    success: "邀请已发送给 %s！"
+    player_not_online: "玩家不在线！"
+    already_in_team: "该玩家已经有队伍了！"
+    no_team: "你没有队伍，无法邀请玩家！"
+    missing_name: "请指定玩家名！"
+  disband:
+    success: "队伍 %s 已成功解散！"
+    not_in_team: "你没有队伍，无法解散队伍！"
+    not_leader: "只有队长才能解散队伍！"
+  kick:
+    success: "玩家 %s 已被踢出队伍！"
+    not_in_team: "你没有队伍，无法踢出成员！"
+    not_in_team: "玩家不在你的队伍中！"
+    missing_name: "请指定玩家名！"
+  promote:
+    success: "玩家 %s 已被提升为副队长！"
+    not_leader: "只有队长才能提升副队长！"
+    not_in_team: "玩家不在你的队伍中！"
+    missing_name: "请指定玩家名！"
+  demote:
+    success: "玩家 %s 的副队长职务已被撤销！"
+    not_leader: "只有队长才能撤销副队长！"
+    not_vice_leader: "玩家不是副队长！"
+    missing_name: "请指定玩家名！"
+  friendlyfire:
+    on: "队伍友伤已开启！"
+    off: "队伍友伤已关闭！"
+    invalid_argument: "无效的参数！请指定开启或关闭！"
+  transfer:
+    success: "队长职位已转让给 %s！"
+    not_leader: "只有队长才能转让队长职位！"
+    not_in_team: "玩家不在你的队伍中！"
+    missing_name: "请指定玩家名！"
+  reload:
+    success: "插件配置已重载！"
+  help:
+    header: "=== ZDteam 插件帮助 ==="
+    create: "/zd create <队伍名称> - 创建队伍"
+    invite: "/zd invite <玩家名> - 邀请玩家加入队伍"
+    disband: "/zd disband - 解散当前队伍"
+    kick: "/zd kick <玩家名> - 踢出队伍成员"
+    promote: "/zd promote <玩家名> - 提升玩家为副队长"
+    demote: "/zd demote <玩家名> - 撤销副队长职务"
+    friendlyfire: "/zd friendlyfire <on/off> - 开启或关闭队伍友伤"
+    transfer: "/zd transfer <玩家名> - 转让队长职位"
+    reload: "/zd reload - 重载插件配置"
+    help: "/zd hp - 显示帮助信息"
+    check: "/zd ck - 查看当前队伍信息"
+  check:
+    no_team: "你没有队伍！"
+    team_info: "队伍名称: %s\n队伍成员: %s\n队长: %s\n副队长: %s"
+
+# 错误提示
+errors:
+  no_permission: "你没有权限执行这个指令！"
+  player_not_found: "未找到指定的玩家！"
+  team_not_found: "指定的队伍不存在！"
+  invalid_argument: "无效的参数！"
+  team_full: "队伍已满！"

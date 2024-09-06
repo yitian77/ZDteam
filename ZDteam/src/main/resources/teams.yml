@@ -1,0 +1,17 @@
+# 队伍配置文件（示例）
+
+teams:
+  team1:
+    leader: "player1_uuid"
+    members:
+      - "player1_uuid"
+      - "player2_uuid"
+    vice-leaders:
+      - "player3_uuid"
+  team2:
+    leader: "player4_uuid"
+    members:
+      - "player4_uuid"
+      - "player5_uuid"
+    vice-leaders:
+      - "player6_uuid"

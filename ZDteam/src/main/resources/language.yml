@@ -1,0 +1,23 @@
+# 语言文件（示例）
+
+messages:
+  team:
+    created: "队伍 %team% 已成功创建！"
+    already-in-team: "你已经在队伍中，无法创建新的队伍！"
+    invited: "邀请已发送给 %player%！"
+    not-online-or-in-team: "玩家不在线或已在其他队伍中！"
+    kicked: "玩家 %player% 已被踢出队伍！"
+    not-in-team-or-no-permission: "玩家不在你的队伍中或你没有权限踢出该玩家！"
+    promoted: "玩家 %player% 已被提升为副队长！"
+    no-permission-or-not-in-team: "你没有权限提升副队长或玩家不在队伍中！"
+    demoted: "玩家 %player% 的副队长职务已被撤销！"
+    no-permission-or-not-vice-leader: "你没有权限撤销副队长职务或玩家不是副队长！"
+    transfer-success: "队长职位已成功转让给 %player%！"
+    transfer-fail: "你没有权限执行此操作或玩家不在队伍中！"
+    disbanded: "队伍 %team% 已成功解散！"
+    not-in-team: "你没有队伍，无法解散队伍！"
+    reloaded: "插件配置已重载！"
+    no-reload-permission: "你没有权限执行此指令！"
+    check-no-team: "你没有队伍！"
+    check-info: "队伍名称: %team%\n队伍成员: %members%"
+    invalid-command: "无效的指令！"
