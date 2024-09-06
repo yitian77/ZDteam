@@ -18,7 +18,7 @@
 - `/zd promote <玩家名>`: 晋升玩家为副队长
 - `/zd demote <玩家名>`: 降职副队长
 - `/zd transfer <玩家名>`: 转让队长给玩家
-- `/zd friendlyfire <开启/关闭>`: 设置队伍间友方伤害
+- `/zd friendlyfire <on/off>`: 设置队伍间友方伤害
 - `/zd reload`: 重载插件配置
 - `/zd hp`: 显示帮助信息
 - `/zd ck`: 查看队伍信息
